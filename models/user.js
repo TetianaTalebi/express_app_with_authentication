@@ -11,3 +11,6 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password cannot be blank!']
     }
 });
+
+// Create a User Model and export it
+module.exports = mongoose.model('User', userSchema);
