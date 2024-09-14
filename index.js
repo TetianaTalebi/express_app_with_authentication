@@ -1,7 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 const app = express();
+
+// Create an object with the secret string for session
+// We keep the secret string in index.js only for demo purposes!!!
+const sessionOptions = {
+    secret: 'notagoodsecret', 
+    resave: false,
+    saveUninitialized: true};
 
 const User = require('./models/user');
 
@@ -24,6 +32,8 @@ app.set('views', 'views');
 
 // A middleware for parsing req.body
 app.use(express.urlencoded({extended: true}));
+
+app.use(session(sessionOptions));
 
 // This route renders a registration form
 app.get('/register', (req, res) => {
