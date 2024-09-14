@@ -4,7 +4,7 @@ const app = express();
 const User = require('./models/user');
 
 app.set('view engine', 'ejs');
-app.set('views', 'view');
+app.set('views', 'views');
 
 // This route renders a registration form
 app.get('/register', (req, res) => {
