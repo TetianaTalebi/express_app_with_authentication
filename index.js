@@ -21,11 +21,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/loginDemo')
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+// A middleware for parsing req.body
+app.use(express.urlencoded({extended: true}));
+
 // This route renders a registration form
 app.get('/register', (req, res) => {
     res.render('register');
 })
-
 
 // Set up a first basic route
 app.get('/secret', (req, res) => {
