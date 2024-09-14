@@ -30,8 +30,16 @@ app.get('/register', (req, res) => {
     res.render('register');
 })
 
-app.post('/register', (req, res)=>{
-    res.send(req.body);
+app.post('/register', async (req, res)=>{
+    const {username, password} = req.body;
+    const hash = await bcrypt.hash(password, 12);
+    const user = new User ({
+        username,
+        hashedPw: hash
+    });
+    await user.save();
+    req.session.user_id=user._id;
+    res.redirect('/');
 })
 
 // Set up a first basic route
