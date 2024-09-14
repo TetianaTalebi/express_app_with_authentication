@@ -35,6 +35,11 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(session(sessionOptions));
 
+// This is a Home Page route
+app.get('/', (req, res)=>{
+    res.send('This is the Home Page!!!');
+})
+
 // This route renders a registration form
 app.get('/register', (req, res) => {
     res.render('register');
