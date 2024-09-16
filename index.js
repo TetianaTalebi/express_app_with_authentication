@@ -63,6 +63,10 @@ app.get('/login', (req, res)=> {
     res.render('login');
 })
 
+app.post('/login', (req, res) => {
+    res.send(req.body);
+})
+
 // Set up a first basic route
 app.get('/secret', (req, res) => {
     res.send('This is a secret. You cannot see a secret, unless you are logged in!')
