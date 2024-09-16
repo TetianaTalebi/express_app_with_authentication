@@ -57,6 +57,12 @@ app.post('/register', async (req, res)=>{
     res.redirect('/');
 })
 
+// This route renders a login form
+
+app.get('/login', (req, res)=> {
+    res.render('login');
+})
+
 // Set up a first basic route
 app.get('/secret', (req, res) => {
     res.send('This is a secret. You cannot see a secret, unless you are logged in!')
