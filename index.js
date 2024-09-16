@@ -63,8 +63,18 @@ app.get('/login', (req, res)=> {
     res.render('login');
 })
 
-app.post('/login', (req, res) => {
-    res.send(req.body);
+app.post('/login', async (req, res) => {
+    const {username, password} = req.body;
+    const user = await User.findOne({username});
+
+    // This expression returns 'true' or 'false'
+    // So, validPassword will be equal to 'true' or 'false'
+    const validPassword = await bcrypt.compare(password, user.hashedPw);
+    if (validPassword){
+        res.redirect('/secret');
+    } else {
+        res.redirect('/login');
+    }
 })
 
 // Set up a first basic route
