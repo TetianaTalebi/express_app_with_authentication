@@ -92,10 +92,7 @@ app.post('/logout', (req, res)=>{
 })
 
 // Set up a first basic route
-app.get('/secret', (req, res) => {
-    if (!req.session.user_id){
-        return res.redirect('/login');
-    }
+app.get('/secret', requireLogin, (req, res) => {
     res.render('secret');
 })
 
