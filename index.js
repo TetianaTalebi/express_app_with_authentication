@@ -35,7 +35,9 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(session(sessionOptions));
 
-// Define a middleware function that verifies if a user is logged in or not
+// Defining a middleware function that verifies if a user is logged in or not
+// In this particular case, app.use() is not used because we need to specify exactly
+// for which routes this middleware function will be applied (but app.use() is applied always and for all routes)
 const requireLogin = (req, res, next) => {
     if (! req.session.user_id){
         return res.redirect('/login');
