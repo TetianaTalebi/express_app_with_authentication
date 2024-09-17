@@ -71,6 +71,7 @@ app.post('/login', async (req, res) => {
     // So, validPassword will be equal to 'true' or 'false'
     const validPassword = await bcrypt.compare(password, user.hashedPw);
     if (validPassword){
+        req.session.user_id=user._id;
         res.redirect('/secret');
     } else {
         res.redirect('/login');
