@@ -98,6 +98,10 @@ app.get('/secret', requireLogin, (req, res) => {
     res.render('secret');
 })
 
+app.get('/topsecret', requireLogin, (req, res)=>{
+    res.send('Top Secret!');
+})
+
 app.listen(3000, () => {
     console.log('Serving the app on port 3000!')
 })
