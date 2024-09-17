@@ -35,6 +35,14 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(session(sessionOptions));
 
+// Define a middleware function that verifies if a user is logged in or not
+const requireLogin = (req, res, next) => {
+    if (! req.session.user_id){
+        return res.redirect('/login');
+    }
+    next();
+}
+
 // This is a Home Page route
 app.get('/', (req, res)=>{
     res.send('This is the Home Page!!!');
