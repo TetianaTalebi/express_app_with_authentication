@@ -80,6 +80,9 @@ app.post('/login', async (req, res) => {
 
 // Set up a first basic route
 app.get('/secret', (req, res) => {
+    if (!req.session.user_id){
+        res.redirect('/login');
+    }
     res.send('This is a secret. You cannot see a secret, unless you are logged in!')
 })
 
