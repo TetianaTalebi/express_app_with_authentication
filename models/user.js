@@ -25,6 +25,11 @@ userSchema.statics.findAndValidate = async function(username, password){
     return isValid ? foundUser : false;
 };
 
+userSchema.pre('save', async function (next){
+    this.hashedPw = await bcrypt.hash(this.hashedPw, 12);
+    next();
+});
+
 
 // Create a User Model and export it
 module.exports = mongoose.model('User', userSchema);
