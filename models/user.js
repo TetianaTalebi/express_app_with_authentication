@@ -26,6 +26,7 @@ userSchema.statics.findAndValidate = async function(username, password){
 };
 
 userSchema.pre('save', async function (next){
+    if(!this.isModified) return next();
     this.hashedPw = await bcrypt.hash(this.hashedPw, 12);
     next();
 });
